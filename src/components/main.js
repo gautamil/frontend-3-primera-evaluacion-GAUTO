@@ -39,22 +39,18 @@ class Main extends Component {
     }
   };
 
+  checkId = (item) => {
+    return item.id === this.state.destinationId;
+  };
+
   render() {
     return (
       <div className="layout">
-        <h1 className="story">
-          {data.filter((item) => item.id === this.state.destinationId)[0].story}
-        </h1>
+        <h1 className="story">{data.filter(this.checkId)[0].story}</h1>
         <Options
           nextArch={this.nextArch}
-          optionA={
-            data.filter((item) => item.id === this.state.destinationId)[0]
-              .options.a
-          }
-          optionB={
-            data.filter((item) => item.id === this.state.destinationId)[0]
-              .options.b
-          }
+          optionA={data.filter(this.checkId)[0].options.a}
+          optionB={data.filter(this.checkId)[0].options.b}
         />
         <Reminder
           previousChoice={this.state.previousChoice}
